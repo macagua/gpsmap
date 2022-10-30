@@ -6,5 +6,5 @@ class gps_protocol(models.Model):
     _description = 'GPS Port'
     _order = "port ASC"
 
-    name = fields.Char(size = 15)
-    port = fields.Char(size = 5)
+    name = fields.Char(string = "Name", size = 15)
+    port = fields.Char(string = "Port", size = 5)

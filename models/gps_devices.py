@@ -8,15 +8,15 @@ class gps_devices(models.Model):
     _description = 'GPS Devices'
     _order = "name DESC"
 
-    name = fields.Char('Name', size=128)
-    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.user.company_id, required=True)   
+    name = fields.Char(string = "Name", size=128)
+    company_id = fields.Many2one('res.company', string = "Company", default=lambda self: self.env.user.company_id, required=True)
     positionid = fields.Many2one('gps_positions', ondelete = 'set null', string = "Position", index = True)
-    uniqueid = fields.Char('IMEI', size = 128)
-    icc = fields.Char('ICC', size = 30)
-    phone = fields.Char('Phone', size = 128)
-    model = fields.Char('Model', size = 128)
-    lastupdate = fields.Datetime('Lastupdate')
-    solesgps_id = fields.Integer()
+    uniqueid = fields.Char(string = "IMEI", size = 128)
+    icc = fields.Char(string = "ICC", size = 30)
+    phone = fields.Char(string = "Phone", size = 128)
+    model = fields.Char(string = "Model", size = 128)
+    lastupdate = fields.Datetime(string = "Last Update")
+    solesgps_id = fields.Integer(string = "Soles GPS")
 
     def write(self, vals):
         return super().write(self.save(vals))
@@ -38,7 +38,7 @@ class gps_devices(models.Model):
         return (solesgps_models, solesgps_db, solesgps_uid, solesgps_pass)
 
     def save(self, vals):
-        params = self.env['ir.config_parameter'].sudo()        
+        params = self.env['ir.config_parameter'].sudo()
 
         if("positionid" not in vals):
             solesgps_models, solesgps_db, solesgps_uid, solesgps_pass = self._get_session_information()

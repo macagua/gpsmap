@@ -7,9 +7,9 @@ class gps_commands(models.Model):
     _description = 'GPS Commands'
     _order = "name DESC"
 
-    name = fields.Char('Name', size = 50)
-    protocol_id = fields.Many2one('gps_protocol', ondelete = 'set null')
-    command = fields.Char(size = 50)
-    sample = fields.Char(size = 50)
-    optional = fields.Boolean()
-    priority = fields.Integer()
+    name = fields.Char(string = "", 'Name', size = 50)
+    protocol_id = fields.Many2one('gps_protocol', ondelete = 'set null', string = "GPS Port")
+    command = fields.Char(string = "Command", size = 50)
+    sample = fields.Char(string = "Sample", size = 50)
+    optional = fields.Boolean(string = "Optional")
+    priority = fields.Integer(string = "Priority")

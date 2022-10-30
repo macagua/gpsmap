@@ -1,29 +1,29 @@
-from odoo import fields, models
+from odoo import fields, models, _
 
 
 class vehicle(models.Model):
     _inherit = "fleet.vehicle"
     
     image_vehicle = fields.Selection([
-        ('01', 'Gray Vehicle'),
-        ('02', 'Red Vehicle'),
-        ('03', 'Gray van'),
-        ('04', 'Gray van'),
-        ('05', 'White truck'),
-        ('06', 'White van'),
-        ('07', 'Blue van'),
-        ('30', 'Moto'),
-        ('90', 'Black Phone'),
-        ('91', 'Blue  Phone'),
-        ('92', 'Green Phone'),
-        ('93', 'Red  Phone')
-        ], 'Img GPS', default = '01', help = 'Image of GPS Vehicle', required = True)
-    temporal_id = fields.Many2one('res.partner', 'temporal')
-    economic_number = fields.Char('Economic Number', size = 50)
-    speed = fields.Char(default = 100, size = 3)
-    motor = fields.Boolean('Motor', default = True, tracking = True)
+        ('01', _('Gray Vehicle')),
+        ('02', _('Red Vehicle')),
+        ('03', _('Gray van')),
+        ('04', _('Gray van')),
+        ('05', _('White truck')),
+        ('06', _('White van')),
+        ('07', _('Blue van')),
+        ('30', _('Moto')),
+        ('90', _('Black Phone')),
+        ('91', _('Blue  Phone')),
+        ('92', _('Green Phone')),
+        ('93', _('Red  Phone'))
+        ], string = "Img GPS", default = '01', help = 'Image of GPS Vehicle', required = True)
+    temporal_id = fields.Many2one('res.partner', string = "temporal")
+    economic_number = fields.Char(string = "Economic Number", size = 50)
+    speed = fields.Char(string = "Speed", default = 100, size = 3)
+    motor = fields.Boolean(string = "Motor", default = True, tracking = True)
     gps1_id = fields.Many2one('gps_devices', ondelete = 'set null', string = "GPS", index = True)
-    positionid = fields.Many2one('gps_positions', ondelete = 'set null', string = "Position", index = True)
+    positionid = fields.Many2one('gps_positions', ondelete = 'set null', string = "GPS Position", index = True)
 
     def get_last_vehicle_position(self):
         positions_arg = [('positionid', '!=', False)]
